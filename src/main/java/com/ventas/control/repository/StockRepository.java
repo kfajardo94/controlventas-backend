@@ -11,6 +11,8 @@ import java.util.Date;
 
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
+    Stock getById(Long id);
+
     Stock getByProducto(Long id);
 
 }

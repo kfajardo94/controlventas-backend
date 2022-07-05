@@ -1,13 +1,9 @@
 package com.ventas.control.impl;
 
 import com.ventas.control.bo.Stock;
-import com.ventas.control.dto.StockRequestDTO;
 import com.ventas.control.repository.StockRepository;
 import com.ventas.control.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
