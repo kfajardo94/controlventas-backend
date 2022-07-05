@@ -22,18 +22,11 @@ public class StockController {
 
     public StockService getService() {return service;}
 
-
     @GetMapping(path = "/getById")
     @ResponseBody
     public Stock getById(@RequestParam Long id){
         Stock obj = service.getById(id);
         return obj;
-    }
-
-    @PostMapping(path = "/getByPage")
-    @ResponseBody
-    public Page<Stock> getByPage(@RequestBody StockRequestDTO request) {
-        return service.getByPage(request);
     }
 
     @PostMapping

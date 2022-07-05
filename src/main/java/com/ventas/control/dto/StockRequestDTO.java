@@ -10,8 +10,6 @@ import java.util.Date;
 @Setter
 public class StockRequestDTO {
     private Stock stock;
-    private Date fechaInicio;
-    private Date fechaFin;
     private int page;
     private int size;
 

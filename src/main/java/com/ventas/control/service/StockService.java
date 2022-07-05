@@ -8,8 +8,6 @@ public interface StockService {
 
     Stock getById(Long id);
 
-    Page<Stock> getByPage(StockRequestDTO request);
-
     Stock save(Stock obj);
 
     void delete(Long id);

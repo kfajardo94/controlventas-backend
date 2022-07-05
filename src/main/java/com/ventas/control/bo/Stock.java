@@ -22,16 +22,10 @@ public class Stock {
     private Producto producto;
     @Column(length = 10)
     private Integer cantidad;
-    @Column()
-    private Double precioCompra;
-    @Column
-    Date fecha;
 
-    public Stock(Long id, Producto producto, Integer cantidad, Double precioCompra, Date fecha) {
+    public Stock(Long id, Producto producto, Integer cantidad) {
         this.id = id;
         this.producto = producto;
         this.cantidad = cantidad;
-        this.precioCompra = precioCompra;
-        this.fecha = fecha;
     }
 }

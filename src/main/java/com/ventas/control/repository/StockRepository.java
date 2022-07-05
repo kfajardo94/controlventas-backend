@@ -11,12 +11,6 @@ import java.util.Date;
 
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
-    Stock getById(Long id);
-
-    @Query("SELECT new com.ventas.control.bo.Stock(s.id, s.producto, s.cantidad, s.precioCompra, s.fecha) " +
-            "FROM Stock s " +
-            "WHERE s.producto LIKE ?1 " +
-            "and s.fecha between ?2 and ?3")
-    Page<Stock> getByPage(Producto producto, Date fechaInicio, Date fechaFin, Pageable pageable);
+    Stock getByProducto(Long id);
 
 }

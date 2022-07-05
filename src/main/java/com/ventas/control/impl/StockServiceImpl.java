@@ -22,16 +22,6 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Page<Stock> getByPage(StockRequestDTO request) {
-        Pageable pageable = PageRequest.of(request.getPage(), request.getSize());
-
-        Page<Stock> response = repository.getByPage(request.getStock().getProducto(), request.getFechaInicio(),
-                request.getFechaFin(), pageable);
-
-        return response;
-    }
-
-    @Override
     public Stock save(Stock obj) {
         return repository.save(obj);
     }
