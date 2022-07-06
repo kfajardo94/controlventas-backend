@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "productos")
@@ -29,10 +30,12 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name="tipo_producto_id")
     private TipoProducto tipoProducto;
+    @Column()
+    private Date fechaVencimiento;
     @Transient
     private String imagenStr;
 
-    public Producto(Long id, String nombre, String codigo, String descripcion, byte[] imagen, Double precio, TipoProducto tipoProducto) {
+    public Producto(Long id, String nombre, String codigo, String descripcion, byte[] imagen, Double precio, TipoProducto tipoProducto, Date fechaVencimiento) {
         this.id = id;
         this.nombre = nombre;
         this.codigo = codigo;
@@ -40,5 +43,6 @@ public class Producto {
         this.imagen = imagen;
         this.precio = precio;
         this.tipoProducto = tipoProducto;
+        this.fechaVencimiento = fechaVencimiento;
     }
 }

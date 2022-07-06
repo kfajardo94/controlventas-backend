@@ -28,7 +28,7 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public Page<Producto> getByPage(ProductoRequestDTO request) {
-        Pageable pageable = PageRequest.of(request.getPage(), request.getSize());
+        Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), Sort.by("nombre").ascending());
 
         Page<Producto> response = repository.getByPage(request.getProducto().getId(), request.getProducto().getId() == null ? 0l : request.getProducto().getId(),
                 request.getProducto().getCodigo(), request.getProducto().getCodigo() == null ? "" : request.getProducto().getCodigo(),
@@ -44,6 +44,7 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public Producto save(Producto obj) {
+        System.out.println("obj: "+obj.getFechaVencimiento());
         obj.setImagen(obj.getImagenStr().getBytes());
         return repository.save(obj);
     }

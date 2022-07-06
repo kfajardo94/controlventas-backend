@@ -26,7 +26,7 @@ public class TipoProductoServiceImpl implements TipoProductoService {
 
     @Override
     public Page<TipoProducto> getByPage(TipoProductoRequestDTO request) {
-        Pageable pageable = PageRequest.of(request.getPage(), request.getSize());
+        Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), Sort.by("nombre").ascending());
 
         Page<TipoProducto> response = repository.getByPage(request.getTipoProducto().getId(), request.getTipoProducto().getId() == null ? 0l : request.getTipoProducto().getId(),
                 request.getTipoProducto().getCodigo(), request.getTipoProducto().getCodigo() == null ? "" : request.getTipoProducto().getCodigo(),

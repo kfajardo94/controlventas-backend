@@ -10,7 +10,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     Producto getById(Long id);
 
-    @Query("SELECT new com.ventas.control.bo.Producto(p.id, p.nombre, p.codigo, p.descripcion, p.imagen, p.precio, p.tipoProducto) " +
+    @Query("SELECT new com.ventas.control.bo.Producto(p.id, p.nombre, p.codigo, p.descripcion, p.imagen, p.precio, p.tipoProducto, p.fechaVencimiento) " +
             "FROM Producto p " +
             "WHERE (?1 is null or CAST(p.id as string) LIKE %?2%) " +
             "and (?3 is null or p.codigo like %?4%) " +
