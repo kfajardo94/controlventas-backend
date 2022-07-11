@@ -17,7 +17,11 @@ public interface FacturaRepository extends JpaRepository<Factura, Long> {
             "FROM Factura f " +
             "WHERE (?1 is null or CAST(f.id as string) LIKE %?2%) " +
             "and (?3 is null or f.codigo like %?4%) " +
-            "and f.fecha between ?5 and ?6")
-    Page<Factura> getByPage(Long idSource, Long id, String codigoSource, String codigo, Date fechaInicio, Date fechaFin, Pageable pageable);
+            "and (?5 is null or f.tipo like %?6%) "+
+            "and f.fecha between ?7 and ?8")
+    Page<Factura> getByPage(Long idSource, Long id, String codigoSource, String codigo,
+                            String tipoSource, String tipo, Date fechaInicio, Date fechaFin, Pageable pageable);
+
+    Factura getByCodigoAndTipo(String codigo, String tipo);
 
 }

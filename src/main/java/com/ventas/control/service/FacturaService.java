@@ -18,4 +18,6 @@ public interface FacturaService {
 
     List<Factura> getAll();
 
+    String getUniqueValidator(Factura requestDTO);
+
 }

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value="/detalleFactura", produces = { "application/json" })
@@ -34,6 +36,12 @@ public class DetalleFacturaController {
     @ResponseBody
     public Page<DetalleFactura> getByPage(@RequestBody DetalleFacturaRequestDTO request) {
         return service.getPageByFactura(request);
+    }
+
+    @PostMapping(path = "/getByFactura")
+    @ResponseBody
+    public List<DetalleFactura> getByFactura(@RequestBody DetalleFacturaRequestDTO request) {
+        return service.getByFactura(request);
     }
 
     @PostMapping

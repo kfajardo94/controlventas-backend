@@ -2,6 +2,7 @@ package com.ventas.control.controller;
 
 import com.ventas.control.bo.Factura;
 import com.ventas.control.dto.FacturaRequestDTO;
+import com.ventas.control.dto.ProductoRequestDTO;
 import com.ventas.control.service.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -60,6 +61,13 @@ public class FacturaController {
     @ResponseBody
     public void delete(@RequestParam Long id){
         service.delete(id);
+    }
+
+    @PostMapping(path = "/getValidadorUniques")
+    @ResponseBody
+    public String getValidadorUniques(@RequestBody Factura obj){
+        String response = service.getUniqueValidator(obj);
+        return response;
     }
 
 }

@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DetalleFacturaServiceImpl implements DetalleFacturaService {
 
@@ -27,6 +29,13 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
 
         Page<DetalleFactura> response = repository.getPageByFactura(request.getFactura(),
                 pageable);
+        return response;
+    }
+
+    @Override
+    public List<DetalleFactura> getByFactura(DetalleFacturaRequestDTO request) {
+
+        List<DetalleFactura> response = repository.getByFactura(request.getFactura());
         return response;
     }
 

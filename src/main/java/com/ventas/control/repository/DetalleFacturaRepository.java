@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface DetalleFacturaRepository extends JpaRepository<DetalleFactura, Long> {
 
     DetalleFactura getById(Long id);
@@ -16,5 +18,7 @@ public interface DetalleFacturaRepository extends JpaRepository<DetalleFactura, 
             "FROM DetalleFactura df " +
             "WHERE df.factura = ?1 ")
     Page<DetalleFactura> getPageByFactura(Factura factura, Pageable pageable);
+
+    List<DetalleFactura> getByFactura(Factura factura);
 
 }

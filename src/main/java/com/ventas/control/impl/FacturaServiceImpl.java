@@ -1,7 +1,9 @@
 package com.ventas.control.impl;
 
 import com.ventas.control.bo.Factura;
+import com.ventas.control.bo.Producto;
 import com.ventas.control.dto.FacturaRequestDTO;
+import com.ventas.control.dto.ProductoRequestDTO;
 import com.ventas.control.repository.FacturaRepository;
 import com.ventas.control.service.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,7 @@ public class FacturaServiceImpl implements FacturaService {
 
         Page<Factura> response = repository.getByPage(request.getObj().getId(), request.getObj().getId() == null ? 0l : request.getObj().getId(),
                 request.getObj().getCodigo(), request.getObj().getCodigo() == null ? "" : request.getObj().getCodigo(),
+                request.getObj().getTipo(), request.getObj().getTipo() == null ? "" : request.getObj().getTipo(),
                 request.getFechaInicio(), request.getFechaFin(),
                 pageable);
         return response;
@@ -51,5 +54,17 @@ public class FacturaServiceImpl implements FacturaService {
     @Override
     public List<Factura> getAll() {
         return repository.findAll(Sort.by("nombre").ascending());
+    }
+
+    @Override
+    public String getUniqueValidator(Factura requestDTO) {
+
+        if (null != requestDTO && null != requestDTO.getCodigo()) {
+            Factura f = repository.getByCodigoAndTipo(requestDTO.getCodigo(), requestDTO.getTipo());
+            if (null != f && (f.getId() != requestDTO.getId())){
+                return "El código ingresado ya se encuentra registrado";
+            }
+        }
+        return null;
     }
 }
