@@ -15,5 +15,14 @@ public class FacturaRequestDTO {
     private int page;
     private int size;
 
-
+    @Override
+    public String toString() {
+        return "FacturaRequestDTO{" +
+                "obj=" + obj +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", page=" + page +
+                ", size=" + size +
+                '}';
+    }
 }

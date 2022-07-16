@@ -65,15 +65,17 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
                         } else {
                             stock = new Stock(null, producto, obj.getCantidad());
                         }
+                        stockRepository.save(stock);
                     } else if (null != obj.getFactura() && obj.getFactura().getTipo().equals("V")) {
                         if (null != stock) {
                             stock.setCantidad(stock.getCantidad()-obj.getCantidad());
                             if (stock.getCantidad() <= 0) {
                                 stockRepository.delete(stock);
+                            } else {
+                                stockRepository.save(stock);
                             }
                         }
                     }
-                    stockRepository.save(stock);
                 }
                 repository.save(obj);
             }

@@ -3,6 +3,7 @@ package com.ventas.control.impl;
 import com.ventas.control.bo.Factura;
 import com.ventas.control.bo.Producto;
 import com.ventas.control.dto.FacturaRequestDTO;
+import com.ventas.control.dto.FacturaResponseDTO;
 import com.ventas.control.dto.ProductoRequestDTO;
 import com.ventas.control.repository.FacturaRepository;
 import com.ventas.control.service.FacturaService;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -66,5 +69,19 @@ public class FacturaServiceImpl implements FacturaService {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<FacturaResponseDTO> getTotales(Date fechaInicio, Date fechaFin) {
+        FacturaResponseDTO compras = repository.getTotalCompras(fechaInicio, fechaFin);
+        FacturaResponseDTO ventas = repository.getTotalVentas(fechaInicio, fechaFin);
+        List<FacturaResponseDTO> lst = new ArrayList<FacturaResponseDTO>();
+        if (null != compras){
+            lst.add(compras);
+        }
+        if (null != ventas) {
+            lst.add(ventas);
+        }
+        return lst;
     }
 }

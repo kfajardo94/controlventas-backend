@@ -1,6 +1,7 @@
 package com.ventas.control.repository;
 
 import com.ventas.control.bo.Factura;
+import com.ventas.control.dto.FacturaResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,5 +24,15 @@ public interface FacturaRepository extends JpaRepository<Factura, Long> {
                             String tipoSource, String tipo, Date fechaInicio, Date fechaFin, Pageable pageable);
 
     Factura getByCodigoAndTipo(String codigo, String tipo);
+
+    @Query("SELECT new com.ventas.control.dto.FacturaResponseDTO(sum(f.total), f.tipo) " +
+            "FROM Factura f " +
+            "WHERE f.tipo = 'C' AND (f.fecha between IFNULL(?1, '1900-01-01') and ?2)")
+    FacturaResponseDTO getTotalCompras(Date fechaInicio, Date fechaFin);
+
+    @Query("SELECT new com.ventas.control.dto.FacturaResponseDTO(sum(f.total), f.tipo) " +
+            "FROM Factura f " +
+            "WHERE f.tipo = 'V' AND (f.fecha between IFNULL(?1, '1900-01-01') and ?2)")
+    FacturaResponseDTO getTotalVentas(Date fechaInicio, Date fechaFin);
 
 }

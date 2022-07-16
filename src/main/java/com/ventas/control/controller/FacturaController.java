@@ -2,14 +2,16 @@ package com.ventas.control.controller;
 
 import com.ventas.control.bo.Factura;
 import com.ventas.control.dto.FacturaRequestDTO;
-import com.ventas.control.dto.ProductoRequestDTO;
+import com.ventas.control.dto.FacturaResponseDTO;
 import com.ventas.control.service.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -68,6 +70,12 @@ public class FacturaController {
     public String getValidadorUniques(@RequestBody Factura obj){
         String response = service.getUniqueValidator(obj);
         return response;
+    }
+
+    @PostMapping(path = "/getTotales")
+    @ResponseBody
+    public List<FacturaResponseDTO> getTotales(@RequestBody FacturaRequestDTO requestDTO){
+        return service.getTotales(requestDTO.getFechaInicio(), requestDTO.getFechaFin());
     }
 
 }
