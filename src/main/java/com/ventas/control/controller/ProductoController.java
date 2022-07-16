@@ -1,6 +1,7 @@
 package com.ventas.control.controller;
 
 import com.ventas.control.bo.Producto;
+import com.ventas.control.bo.TipoProducto;
 import com.ventas.control.dto.ProductoRequestDTO;
 import com.ventas.control.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,13 @@ public class ProductoController {
     @ResponseBody
     public void delete(@RequestParam Long id){
         service.delete(id);
+    }
+
+    @GetMapping(path = "/getByTipoProducto")
+    @ResponseBody
+    public Producto getByTipoProducto(@RequestParam Long idTipoProducto){
+        Producto obj = service.getByIdTipoProducto(idTipoProducto);
+        return obj;
     }
 
     @PostMapping(path = "/getValidadorUniques")

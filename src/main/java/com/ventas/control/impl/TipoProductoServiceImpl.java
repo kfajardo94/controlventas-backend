@@ -1,7 +1,9 @@
 package com.ventas.control.impl;
 
+import com.ventas.control.bo.Producto;
 import com.ventas.control.bo.TipoProducto;
 import com.ventas.control.dto.TipoProductoRequestDTO;
+import com.ventas.control.repository.ProductoRepository;
 import com.ventas.control.repository.TipoProductoRepository;
 import com.ventas.control.service.TipoProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class TipoProductoServiceImpl implements TipoProductoService {
 
     @Autowired
     private TipoProductoRepository repository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
 
     @Override
     public TipoProducto getById(Long id) {
@@ -69,4 +74,5 @@ public class TipoProductoServiceImpl implements TipoProductoService {
     public List<TipoProducto> getAll() {
         return repository.findAll(Sort.by("nombre").ascending());
     }
+
 }

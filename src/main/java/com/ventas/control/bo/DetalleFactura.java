@@ -22,9 +22,10 @@ public class DetalleFactura {
     @ManyToOne
     @JoinColumn(name="factura_id")
     private Factura factura;
-    @ManyToOne
-    @JoinColumn(name="producto_id")
-    private Producto producto;
+    @Column(name="producto_codigo")
+    private String productoCodigo;
+    @Column(name="producto_nombre")
+    private String productoNombre;
     @Column(length = 10)
     private Long cantidad;
     @Column()

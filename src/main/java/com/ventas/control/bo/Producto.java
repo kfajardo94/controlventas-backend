@@ -3,6 +3,7 @@ package com.ventas.control.bo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,12 +31,12 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name="tipo_producto_id")
     private TipoProducto tipoProducto;
-    @Column()
-    private Date fechaVencimiento;
     @Transient
     private String imagenStr;
+    @Transient
+    private Long cantidadStock;
 
-    public Producto(Long id, String nombre, String codigo, String descripcion, byte[] imagen, Double precio, TipoProducto tipoProducto, Date fechaVencimiento) {
+    public Producto(Long id, String nombre, String codigo, String descripcion, byte[] imagen, Double precio, TipoProducto tipoProducto, Long cantidadStock) {
         this.id = id;
         this.nombre = nombre;
         this.codigo = codigo;
@@ -43,6 +44,6 @@ public class Producto {
         this.imagen = imagen;
         this.precio = precio;
         this.tipoProducto = tipoProducto;
-        this.fechaVencimiento = fechaVencimiento;
+        this.cantidadStock = cantidadStock;
     }
 }

@@ -13,6 +13,6 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
 
     Stock getById(Long id);
 
-    Stock getByProducto(Long id);
+    Stock getByProducto(Producto id);
 
 }

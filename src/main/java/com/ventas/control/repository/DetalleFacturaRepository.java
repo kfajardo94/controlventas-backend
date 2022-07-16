@@ -13,7 +13,7 @@ public interface DetalleFacturaRepository extends JpaRepository<DetalleFactura, 
 
     DetalleFactura getById(Long id);
 
-    @Query("SELECT new com.ventas.control.bo.DetalleFactura(df.id, df.factura, df.producto, " +
+    @Query("SELECT new com.ventas.control.bo.DetalleFactura(df.id, df.factura, df.productoCodigo, df.productoNombre, " +
             "df.cantidad, df.total) " +
             "FROM DetalleFactura df " +
             "WHERE df.factura = ?1 ")

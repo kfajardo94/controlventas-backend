@@ -3,6 +3,7 @@ package com.ventas.control.bo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,9 +22,9 @@ public class Stock {
     @JoinColumn(name="producto_id")
     private Producto producto;
     @Column(length = 10)
-    private Integer cantidad;
+    private Long cantidad;
 
-    public Stock(Long id, Producto producto, Integer cantidad) {
+    public Stock(Long id, Producto producto, Long cantidad) {
         this.id = id;
         this.producto = producto;
         this.cantidad = cantidad;

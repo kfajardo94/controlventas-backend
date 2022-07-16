@@ -1,8 +1,10 @@
 package com.ventas.control.impl;
 
 import com.ventas.control.bo.Producto;
+import com.ventas.control.bo.TipoProducto;
 import com.ventas.control.dto.ProductoRequestDTO;
 import com.ventas.control.repository.ProductoRepository;
+import com.ventas.control.repository.TipoProductoRepository;
 import com.ventas.control.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,9 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Autowired
     private ProductoRepository repository;
+
+    @Autowired
+    private TipoProductoRepository tipoProductoRepository;
 
     @Override
     public Producto getById(Long id) {
@@ -44,7 +49,6 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public Producto save(Producto obj) {
-        System.out.println("obj: "+obj.getFechaVencimiento());
         obj.setImagen(obj.getImagenStr().getBytes());
         return repository.save(obj);
     }
@@ -81,5 +85,18 @@ public class ProductoServiceImpl implements ProductoService {
             obj.setImagenStr(new String(obj.getImagen()));
         }
         return lst;
+    }
+
+    @Override
+    public Producto getByIdTipoProducto(Long idTipoProducto) {
+        Producto producto = null;
+        TipoProducto tipoProducto = tipoProductoRepository.findById(idTipoProducto).get();
+        if (null != tipoProducto) {
+            List<Producto> lstProductos = repository.getByTipoProducto(tipoProducto);
+            if (null != lstProductos && lstProductos.size() > 0) {
+                producto = lstProductos.get(0);
+            }
+        }
+        return producto;
     }
 }

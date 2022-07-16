@@ -20,4 +20,5 @@ public interface ProductoService {
 
     List<Producto> getAll();
 
+    Producto getByIdTipoProducto(Long idTipoProducto);
 }

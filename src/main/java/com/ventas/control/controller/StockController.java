@@ -27,6 +27,13 @@ public class StockController {
         return obj;
     }
 
+    @GetMapping(path = "/getByProducto")
+    @ResponseBody
+    public Stock getByProducto(@RequestParam Long idProducto){
+        Stock obj = service.getByIdProducto(idProducto);
+        return obj;
+    }
+
     @PostMapping
     @ResponseBody
     public Stock save(@RequestBody Stock obj){

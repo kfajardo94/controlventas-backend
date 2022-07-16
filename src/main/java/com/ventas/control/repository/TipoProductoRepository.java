@@ -1,5 +1,6 @@
 package com.ventas.control.repository;
 
+import com.ventas.control.bo.Producto;
 import com.ventas.control.bo.TipoProducto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

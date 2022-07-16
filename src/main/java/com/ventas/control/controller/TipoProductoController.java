@@ -1,5 +1,6 @@
 package com.ventas.control.controller;
 
+import com.ventas.control.bo.Stock;
 import com.ventas.control.bo.TipoProducto;
 import com.ventas.control.dto.TipoProductoRequestDTO;
 import com.ventas.control.service.TipoProductoService;
