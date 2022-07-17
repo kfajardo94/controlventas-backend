@@ -32,6 +32,11 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
+    public Producto getByCodigo(String codigo) {
+        return repository.getByCodigo(codigo);
+    }
+
+    @Override
     public Page<Producto> getByPage(ProductoRequestDTO request) {
         Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), Sort.by("nombre").ascending());
 

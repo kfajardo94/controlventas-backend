@@ -11,6 +11,10 @@ import java.util.List;
 
 public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
+    @Query("SELECT new com.ventas.control.bo.Producto(p.id, p.nombre, p.codigo, p.descripcion, p.imagen, p.precio, p.tipoProducto, s.cantidad) " +
+            "FROM Producto p " +
+            "LEFT JOIN Stock s ON s.producto = p " +
+            "WHERE p.id = ?1")
     Producto getById(Long id);
 
     @Query("SELECT new com.ventas.control.bo.Producto(p.id, p.nombre, p.codigo, p.descripcion, p.imagen, p.precio, p.tipoProducto, s.cantidad) " +

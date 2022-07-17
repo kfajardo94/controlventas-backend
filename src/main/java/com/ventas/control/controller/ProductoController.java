@@ -33,6 +33,13 @@ public class ProductoController {
         return obj;
     }
 
+    @GetMapping(path = "/getByCodigo")
+    @ResponseBody
+    public Producto getById(@RequestParam String codigo){
+        Producto obj = service.getByCodigo(codigo);
+        return obj;
+    }
+
     @GetMapping(path = "/getAll")
     @ResponseBody
     public List<Producto> getAll(){

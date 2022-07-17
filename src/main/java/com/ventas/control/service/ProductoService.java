@@ -10,6 +10,8 @@ public interface ProductoService {
 
     Producto getById(Long id);
 
+    Producto getByCodigo(String codigo);
+
     Page<Producto> getByPage(ProductoRequestDTO request);
 
     Producto save(Producto obj);
