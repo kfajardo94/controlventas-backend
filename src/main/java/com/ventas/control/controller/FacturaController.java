@@ -73,7 +73,7 @@ public class FacturaController {
     @PostMapping(path = "/getTotales")
     @ResponseBody
     public List<FacturaResponseDTO> getTotales(@RequestBody FacturaRequestDTO requestDTO){
-        return service.getTotales(requestDTO.getFechaInicio(), requestDTO.getFechaFin());
+        return service.getTotales(requestDTO);
     }
 
 }

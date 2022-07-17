@@ -22,6 +22,6 @@ public interface FacturaService {
 
     String getUniqueValidator(Factura requestDTO);
 
-    List<FacturaResponseDTO> getTotales(Date fechaInicio, Date fechaFin);
+    List<FacturaResponseDTO> getTotales(FacturaRequestDTO requestDTO);
 
 }

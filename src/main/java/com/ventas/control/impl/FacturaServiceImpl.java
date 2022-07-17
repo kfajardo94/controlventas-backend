@@ -72,9 +72,13 @@ public class FacturaServiceImpl implements FacturaService {
     }
 
     @Override
-    public List<FacturaResponseDTO> getTotales(Date fechaInicio, Date fechaFin) {
-        FacturaResponseDTO compras = repository.getTotalCompras(fechaInicio, fechaFin);
-        FacturaResponseDTO ventas = repository.getTotalVentas(fechaInicio, fechaFin);
+    public List<FacturaResponseDTO> getTotales(FacturaRequestDTO requestDTO) {
+        FacturaResponseDTO compras = repository.getTotalCompras(requestDTO.getFechaInicio(), requestDTO.getFechaFin(),
+                requestDTO.getId(), requestDTO.getId() == null ? 0l : requestDTO.getId(),
+                requestDTO.getCodigo(), requestDTO.getCodigo() == null ? "" : requestDTO.getCodigo());
+        FacturaResponseDTO ventas = repository.getTotalVentas(requestDTO.getFechaInicio(), requestDTO.getFechaFin(),
+                requestDTO.getId(), requestDTO.getId() == null ? 0l : requestDTO.getId(),
+                requestDTO.getCodigo(), requestDTO.getCodigo() == null ? "" : requestDTO.getCodigo());
         List<FacturaResponseDTO> lst = new ArrayList<FacturaResponseDTO>();
         if (null != compras){
             lst.add(compras);

@@ -27,12 +27,16 @@ public interface FacturaRepository extends JpaRepository<Factura, Long> {
 
     @Query("SELECT new com.ventas.control.dto.FacturaResponseDTO(sum(f.total), f.tipo) " +
             "FROM Factura f " +
-            "WHERE f.tipo = 'C' AND (f.fecha between IFNULL(?1, '1900-01-01') and ?2)")
-    FacturaResponseDTO getTotalCompras(Date fechaInicio, Date fechaFin);
+            "WHERE f.tipo = 'C' AND (f.fecha between IFNULL(?1, '1900-01-01') AND ?2) " +
+            "AND (?3 is null or CAST(f.id as string) LIKE %?4%) " +
+            "AND (?5 is null or f.codigo like %?6%)")
+    FacturaResponseDTO getTotalCompras(Date fechaInicio, Date fechaFin, Long idSource, Long id, String codigoSource, String codigo );
 
     @Query("SELECT new com.ventas.control.dto.FacturaResponseDTO(sum(f.total), f.tipo) " +
             "FROM Factura f " +
-            "WHERE f.tipo = 'V' AND (f.fecha between IFNULL(?1, '1900-01-01') and ?2)")
-    FacturaResponseDTO getTotalVentas(Date fechaInicio, Date fechaFin);
+            "WHERE f.tipo = 'V' AND (f.fecha between IFNULL(?1, '1900-01-01') AND ?2) "+
+            "AND (?3 is null or CAST(f.id as string) LIKE %?4%) " +
+            "AND (?5 is null or f.codigo like %?6%)")
+    FacturaResponseDTO getTotalVentas(Date fechaInicio, Date fechaFin, Long idSource, Long id, String codigoSource, String codigo);
 
 }
